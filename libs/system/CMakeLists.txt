@@ -44,7 +44,7 @@ find_dependency(boost_config)
 find_dependency(boost_core)
 find_dependency(boost_predef)
 
-include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_system-config.cmake\")
+include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_system-targets.cmake\")
 ")
 
 write_basic_package_version_file("${PROJECT_BINARY_DIR}/boost_system-config-version.cmake"

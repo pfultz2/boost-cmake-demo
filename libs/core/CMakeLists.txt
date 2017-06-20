@@ -38,7 +38,7 @@ include(CMakeFindDependencyMacro)
 find_dependency(boost_assert)
 find_dependency(boost_config)
 
-include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_core-config.cmake\")
+include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_core-targets.cmake\")
 ")
 
 write_basic_package_version_file("${PROJECT_BINARY_DIR}/boost_core-config-version.cmake"

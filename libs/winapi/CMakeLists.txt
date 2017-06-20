@@ -38,7 +38,7 @@ include(CMakeFindDependencyMacro)
 find_dependency(boost_config)
 find_dependency(boost_predef)
 
-include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_winapi-config.cmake\")
+include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_winapi-targets.cmake\")
 ")
 
 write_basic_package_version_file("${PROJECT_BINARY_DIR}/boost_winapi-config-version.cmake"
