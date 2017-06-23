@@ -2,9 +2,11 @@
 cmake_minimum_required(VERSION 3.5)
 project(boost_winapi)
 include(CMakePackageConfigHelpers)
+set(DEPS config predef)
 
-find_package(boost_config)
-find_package(boost_predef)
+foreach(dep ${DEPS})
+find_package(boost_${dep})
+endforeach()
 
 add_library(boost_winapi INTERFACE)
 add_library(boost::winapi ALIAS boost_winapi)
@@ -14,8 +16,9 @@ target_include_directories(boost_winapi INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(boost_winapi INTERFACE boost::config)
-target_link_libraries(boost_winapi INTERFACE boost::predef)
+foreach(dep ${DEPS})
+target_link_libraries(boost_winapi INTERFACE boost::${dep})
+endforeach()
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -35,8 +38,9 @@ install(EXPORT boost_winapi-targets
 file(WRITE "${PROJECT_BINARY_DIR}/boost_winapi-config.cmake" "
 include(CMakeFindDependencyMacro)
 
-find_dependency(boost_config)
-find_dependency(boost_predef)
+foreach(dep ${DEPS})
+find_dependency(boost_\${dep})
+endforeach()
 
 include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_winapi-targets.cmake\")
 ")

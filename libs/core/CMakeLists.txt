@@ -2,9 +2,11 @@
 cmake_minimum_required(VERSION 3.5)
 project(boost_core)
 include(CMakePackageConfigHelpers)
+set(DEPS assert config)
 
-find_package(boost_assert)
-find_package(boost_config)
+foreach(dep ${DEPS})
+find_package(boost_${dep})
+endforeach()
 
 add_library(boost_core INTERFACE)
 add_library(boost::core ALIAS boost_core)
@@ -14,8 +16,9 @@ target_include_directories(boost_core INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(boost_core INTERFACE boost::assert)
-target_link_libraries(boost_core INTERFACE boost::config)
+foreach(dep ${DEPS})
+target_link_libraries(boost_core INTERFACE boost::${dep})
+endforeach()
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -35,8 +38,9 @@ install(EXPORT boost_core-targets
 file(WRITE "${PROJECT_BINARY_DIR}/boost_core-config.cmake" "
 include(CMakeFindDependencyMacro)
 
-find_dependency(boost_assert)
-find_dependency(boost_config)
+foreach(dep ${DEPS})
+find_dependency(boost_\${dep})
+endforeach()
 
 include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_core-targets.cmake\")
 ")

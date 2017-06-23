@@ -2,11 +2,11 @@
 cmake_minimum_required(VERSION 3.5)
 project(boost_system)
 include(CMakePackageConfigHelpers)
+set(DEPS assert config core predef)
 
-find_package(boost_assert)
-find_package(boost_config)
-find_package(boost_core)
-find_package(boost_predef)
+foreach(dep ${DEPS})
+find_package(boost_${dep})
+endforeach()
 
 add_library(boost_system src/error_code.cpp)
 add_library(boost::system ALIAS boost_system)
@@ -16,10 +16,9 @@ target_include_directories(boost_system PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(boost_system boost::assert)
-target_link_libraries(boost_system boost::config)
-target_link_libraries(boost_system boost::core)
-target_link_libraries(boost_system boost::predef)
+foreach(dep ${DEPS})
+target_link_libraries(boost_system boost::${dep})
+endforeach()
 
 install(DIRECTORY include/ DESTINATION include)
 
@@ -39,10 +38,9 @@ install(EXPORT boost_system-targets
 file(WRITE "${PROJECT_BINARY_DIR}/boost_system-config.cmake" "
 include(CMakeFindDependencyMacro)
 
-find_dependency(boost_assert)
-find_dependency(boost_config)
-find_dependency(boost_core)
-find_dependency(boost_predef)
+foreach(dep ${DEPS})
+find_dependency(boost_\${dep})
+endforeach()
 
 include(\"\${CMAKE_CURRENT_LIST_DIR}/boost_system-targets.cmake\")
 ")

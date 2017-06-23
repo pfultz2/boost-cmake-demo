@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(boost_config)
 include(CMakePackageConfigHelpers)
+set(DEPS )
 
 
 add_library(boost_config INTERFACE)
