@@ -3,10 +3,12 @@ cmake_minimum_required(VERSION 3.5)
 project(boost)
 
 macro(find_package NAME)
-  if(NOT "${NAME}" MATCHES "^boost_.*$")
+  if(NOT "${NAME}" MATCHES "^boost_.*$" AND NOT "${NAME}" STREQUAL BCM)
     _find_package(${ARGV})
   endif()
 endmacro()
+
+include(bcm/share/bcm/cmake/BCMConfig.cmake)
 
 file(GLOB LIBS libs/*)
 foreach(lib ${LIBS})
