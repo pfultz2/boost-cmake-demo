@@ -11,7 +11,7 @@
 //             Andrew Lumsdaine (lums at osl.iu.edu)
 
 #include <boost/utility/enable_if.hpp>
-#include <boost/type_traits/is_arithmetic.hpp>
+#include "is_arithmetic.hpp"
 #include <boost/detail/lightweight_test.hpp>
 
 using boost::enable_if_has_type;
@@ -19,7 +19,6 @@ using boost::enable_if_c;
 using boost::disable_if_c;
 using boost::enable_if;
 using boost::disable_if;
-using boost::is_arithmetic;
 
 template <class T, class Enable = void>
 struct tester;

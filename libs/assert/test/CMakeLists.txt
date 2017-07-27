@@ -1,6 +1,8 @@
 include(BCMTest)
 
-bcm_test_link_libraries(boost_assert)
+find_package(boost_core)
+
+bcm_test_link_libraries(boost_assert boost::core)
 
 bcm_test(NAME assert_test SOURCES assert_test.cpp)
 bcm_test(NAME current_function_test SOURCES current_function_test.cpp)

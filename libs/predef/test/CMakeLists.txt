@@ -20,3 +20,4 @@ if(APPLE)
 endif()
 bcm_test(NAME check_value SOURCES check_value.cpp)
 # [ predef-check "BOOST_COMP_CLANG > 0.0.0" "BOOST_OS_LINUX == 0" : : <cxxflags>-DCHECK_VALUE=true ]
+# when using clang not on linux

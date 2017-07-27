@@ -9,7 +9,9 @@
 include(BCMTest)
 include(BCMProperties)
 
-bcm_test_link_libraries(boost_core)
+find_package(boost_static_assert)
+
+bcm_test_link_libraries(boost_core boost::static_assert)
 
 bcm_test(NAME addressof_test SOURCES addressof_test.cpp)
 bcm_test(NAME addressof_test2 SOURCES addressof_test2.cpp)

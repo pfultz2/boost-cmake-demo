@@ -11,12 +11,11 @@
 //             Andrew Lumsdaine (lums at osl.iu.edu)
 
 #include <boost/utility/enable_if.hpp>
-#include <boost/type_traits/is_arithmetic.hpp>
+#include "is_arithmetic.hpp"
 #include <boost/detail/lightweight_test.hpp>
 
 using boost::enable_if;
 using boost::disable_if;
-using boost::is_arithmetic;
 
 struct container {
   template <class T>

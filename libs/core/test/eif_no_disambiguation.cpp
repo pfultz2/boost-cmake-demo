@@ -12,11 +12,10 @@
 
 #include <boost/config.hpp>
 #include <boost/utility/enable_if.hpp>
-#include <boost/type_traits/is_arithmetic.hpp>
+#include "is_arithmetic.hpp"
 #include <boost/detail/lightweight_test.hpp>
 
 using boost::enable_if;
-using boost::is_arithmetic;
 
 template<class T> struct not_
 {

@@ -13,6 +13,8 @@ include(BCMProperties)
 bcm_test_link_libraries(boost_system)
 
 add_library(throw_test throw_test.cpp)
+bcm_mark_as_test(throw_test)
+target_link_libraries(throw_test boost_system)
 if(BUILD_SHARED_LIBS)
     target_compile_definitions(throw_test PUBLIC BOOST_SYSTEM_DYN_LINK=1)
 else()

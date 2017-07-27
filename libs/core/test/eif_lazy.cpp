@@ -11,7 +11,7 @@
 //             Andrew Lumsdaine (lums at osl.iu.edu)
 
 #include <boost/utility/enable_if.hpp>
-#include <boost/type_traits/is_same.hpp>
+#include <boost/core/is_same.hpp>
 #include <boost/detail/lightweight_test.hpp>
 
 using boost::enable_if_c;
@@ -26,7 +26,7 @@ using boost::lazy_enable_if_c;
 // makes sense for some set of types, not all C++ types.
 
 template <class T> struct is_int {
-  BOOST_STATIC_CONSTANT(bool, value = (boost::is_same<T, int>::value));
+  BOOST_STATIC_CONSTANT(bool, value = (boost::core::is_same<T, int>::value));
 };
 
 template <class T, class U>

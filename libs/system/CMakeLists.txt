@@ -16,6 +16,8 @@ bcm_setup_version(VERSION 1.64)
 add_library(boost_system src/error_code.cpp)
 set_property(TARGET boost_system PROPERTY EXPORT_NAME system)
 
+target_include_directories(boost_system PRIVATE include)
+
 target_link_libraries(boost_system PUBLIC boost::assert boost::config boost::core boost::predef)
 
 bcm_deploy(TARGETS boost_system INCLUDE include NAMESPACE boost::)
