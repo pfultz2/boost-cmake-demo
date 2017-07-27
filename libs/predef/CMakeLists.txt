@@ -3,10 +3,12 @@ cmake_minimum_required(VERSION 3.5)
 project(boost_predef)
 
 find_package(BCM)
-include(BCMPackage)
-include(CMakePackageConfigHelpers)
+include(BCMDeploy)
+include(BCMSetupVersion)
 
-bcm_boost_package(predef
-  VERSION 1.64
-  DEPENDS
-)
+bcm_setup_version(VERSION 1.64)
+
+add_library(boost_predef INTERFACE)
+set_property(TARGET boost_predef PROPERTY EXPORT_NAME predef)
+
+bcm_deploy(TARGETS boost_predef INCLUDE include)

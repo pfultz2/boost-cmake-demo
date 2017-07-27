@@ -3,12 +3,15 @@ cmake_minimum_required(VERSION 3.5)
 project(boost_winapi)
 
 find_package(BCM)
-include(BCMPackage)
-include(CMakePackageConfigHelpers)
+include(BCMDeploy)
+include(BCMSetupVersion)
 
-bcm_boost_package(winapi
-  VERSION 1.64
-  DEPENDS
-    config
-    predef
-)
+find_package(boost_config)
+find_package(boost_predef)
+
+bcm_setup_version(VERSION 1.64)
+
+add_library(boost_winapi INTERFACE)
+set_property(TARGET boost_winapi PROPERTY EXPORT_NAME winapy)
+
+target_link_libraries(boost_winapi INTERFACE boost::config boost::predef)

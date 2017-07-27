@@ -3,16 +3,19 @@ cmake_minimum_required(VERSION 3.5)
 project(boost_system)
 
 find_package(BCM)
-include(BCMPackage)
-include(CMakePackageConfigHelpers)
+include(BCMDeploy)
+include(BCMSetupVersion)
 
-bcm_boost_package(system
-  VERSION 1.64
-  SOURCES
-    src/error_code.cpp
-  DEPENDS
-    assert
-    config
-    core
-    predef
-)
+find_package(boost_assert)
+find_package(boost_config)
+find_package(boost_core)
+find_package(boost_predef)
+
+bcm_setup_version(VERSION 1.64)
+
+add_library(boost_system src/error_code.cpp)
+set_property(TARGET boost_system PROPERTY EXPORT_NAME system)
+
+target_link_libraries(boost_system PUBLIC boost::assert boost::config boost::core boost::predef)
+
+bcm_deploy(TARGETS boost_system INCLUDE include)
