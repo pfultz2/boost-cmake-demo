@@ -16,3 +16,5 @@ set_property(TARGET boost_assert PROPERTY EXPORT_NAME assert)
 target_link_libraries(boost_assert INTERFACE boost::config)
 
 bcm_deploy(TARGETS boost_assert INCLUDE include NAMESPACE boost::)
+
+add_subdirectory(test)
