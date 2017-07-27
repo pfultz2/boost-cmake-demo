@@ -12,3 +12,5 @@ add_library(boost_predef INTERFACE)
 set_property(TARGET boost_predef PROPERTY EXPORT_NAME predef)
 
 bcm_deploy(TARGETS boost_predef INCLUDE include NAMESPACE boost::)
+
+add_subdirectory(test)
