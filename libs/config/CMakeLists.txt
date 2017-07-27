@@ -11,4 +11,4 @@ bcm_setup_version(VERSION 1.64)
 add_library(boost_config INTERFACE)
 set_property(TARGET boost_config PROPERTY EXPORT_NAME config)
 
-bcm_deploy(TARGETS boost_config INCLUDE include)
+bcm_deploy(TARGETS boost_config INCLUDE include NAMESPACE boost::)

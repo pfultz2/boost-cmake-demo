@@ -18,4 +18,4 @@ set_property(TARGET boost_system PROPERTY EXPORT_NAME system)
 
 target_link_libraries(boost_system PUBLIC boost::assert boost::config boost::core boost::predef)
 
-bcm_deploy(TARGETS boost_system INCLUDE include)
+bcm_deploy(TARGETS boost_system INCLUDE include NAMESPACE boost::)

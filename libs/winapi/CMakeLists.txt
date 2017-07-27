@@ -15,3 +15,5 @@ add_library(boost_winapi INTERFACE)
 set_property(TARGET boost_winapi PROPERTY EXPORT_NAME winapy)
 
 target_link_libraries(boost_winapi INTERFACE boost::config boost::predef)
+
+bcm_deploy(TARGETS boost_winapi INCLUDE include NAMESPACE boost::)

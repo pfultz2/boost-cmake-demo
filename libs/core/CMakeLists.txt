@@ -16,4 +16,4 @@ set_property(TARGET boost_core PROPERTY EXPORT_NAME core)
 
 target_link_libraries(boost_core INTERFACE boost::assert boost::config)
 
-bcm_deploy(TARGETS boost_core INCLUDE include)
+bcm_deploy(TARGETS boost_core INCLUDE include NAMESPACE boost::)
