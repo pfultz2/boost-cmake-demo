@@ -19,18 +19,36 @@ include_directories(.)
 include(TestGen.cmake)
 
 set(SKIP_TESTS 
+    boost_has_clock_gettime.ipp
     boost_has_macro_use_facet.ipp
+    boost_no_char16_t.ipp
+    boost_no_char32_t.ipp
     boost_no_com_value_init.ipp
     boost_no_cxx11_addressof.ipp
     boost_no_cxx11_hdr_atomic.ipp
+    boost_no_cxx11_hdr_chrono.ipp
     boost_no_cxx11_hdr_codecvt.ipp
+    boost_no_cxx11_hdr_condition_variable.ipp
+    boost_no_cxx11_hdr_mutex.ipp
+    boost_no_cxx11_hdr_random.ipp
+    boost_no_cxx11_hdr_ratio.ipp
+    boost_no_cxx11_hdr_regex.ipp
+    boost_no_cxx11_hdr_system_error.ipp
+    boost_no_cxx11_hdr_thread.ipp
     boost_no_cxx11_hdr_tuple.ipp
+    boost_no_cxx11_hdr_typeindex.ipp
+    boost_no_cxx11_hdr_unordered_map.ipp
+    boost_no_cxx11_hdr_unordered_set.ipp
     boost_no_cxx11_inline_namespaces.ipp
+    boost_no_cxx11_numeric_limits.ipp
+    boost_no_cxx11_smart_ptr.ipp
     boost_no_cxx11_std_align.ipp
     boost_no_cxx11_trailing_result_types.ipp
     boost_no_cxx14_binary_literals.ipp
+    boost_no_decltype.ipp
     boost_no_decltype_n3276.ipp
     boost_no_ded_typename.ipp
+    boost_no_nullptr.ipp
     boost_no_sfinae_expr.ipp
     boost_no_two_phase_lookup.ipp
 )
@@ -63,11 +81,11 @@ bcm_test(NAME limits_test SOURCES limits_test.cpp)
 bcm_test(NAME math_info SOURCES math_info.cpp)
 
 include(CheckCXXCompilerFlag)
-set(IMPLICIT_FALLTHROUGH_FLAG "-std=c++11 -Wimplicit-fallthrough -Wall -Werror")
-check_cxx_compiler_flag(${IMPLICIT_FALLTHROUGH_FLAG} HAS_IMPLICIT_FALLTHROUGH)
+set(IMPLICIT_FALLTHROUGH_FLAG -std=c++11 -Wimplicit-fallthrough -Wall -Werror)
+check_cxx_compiler_flag("${IMPLICIT_FALLTHROUGH_FLAG}" HAS_IMPLICIT_FALLTHROUGH)
 bcm_test(NAME boost_fallthrough_test SOURCES boost_fallthrough_test.cpp COMPILE_ONLY)
 if(HAS_IMPLICIT_FALLTHROUGH)
-    target_compile_options(boost_fallthrough_test ${IMPLICIT_FALLTHROUGH_FLAG})
+    target_compile_options(boost_fallthrough_test PUBLIC ${IMPLICIT_FALLTHROUGH_FLAG})
 endif(HAS_IMPLICIT_FALLTHROUGH)
 bcm_test(NAME helper_macro_test SOURCES helper_macro_test.cpp COMPILE_ONLY)
 
