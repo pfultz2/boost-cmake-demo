@@ -37,3 +37,23 @@ macro(add_library LIB)
         endif()
     endif()
 endmacro()
+
+define_property(TARGET PROPERTY "INTERFACE_TARGET_EXISTS"
+    BRIEF_DOCS "True if target exists"
+    FULL_DOCS "True if target exists"
+)
+
+macro(bcm_shadow TARGET)
+    if(NOT TARGET _bcm_shadow_target_${TARGET})
+        add_library(_bcm_shadow_target_${TARGET} INTERFACE IMPORTED GLOBAL)
+    endif()
+    set_target_properties(_bcm_shadow_target_${TARGET} PROPERTIES INTERFACE_TARGET_EXISTS 1)
+endmacro()
+
+macro(bcm_shadow_exists OUT TARGET)
+    if(NOT TARGET _bcm_shadow_target_${TARGET})
+        add_library(_bcm_shadow_target_${TARGET} INTERFACE IMPORTED GLOBAL)
+        set_target_properties(_bcm_shadow_target_${TARGET} PROPERTIES INTERFACE_TARGET_EXISTS 0)
+    endif()
+    set(${OUT} "$<TARGET_PROPERTY:_bcm_shadow_target_${TARGET},INTERFACE_TARGET_EXISTS>")
+endmacro()

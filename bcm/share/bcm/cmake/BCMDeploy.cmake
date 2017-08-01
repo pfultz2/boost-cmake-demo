@@ -23,6 +23,7 @@ function(bcm_deploy)
         if(NOT TARGET ${EXPORT_LIB_TARGET})
             add_library(${EXPORT_LIB_TARGET} ALIAS ${TARGET})
         endif()
+        bcm_shadow(${EXPORT_LIB_TARGET})
     endforeach()
 
 endfunction()
